@@ -1,8 +1,9 @@
 from time import sleep
 from random import random
 
+
 class Attraktion:
-    def __init__(self, namn, beskrivning, kapacitet, minlangd, utrop1, utrop2, utrop3, vantetid):
+    def __init__(self, namn, beskrivning, kapacitet, minlangd, utrop1, utrop2, utrop3, vantetid, haveri):
         self.namn = namn
         self.kapacitet = kapacitet
         self.beskrivning = beskrivning
@@ -11,6 +12,7 @@ class Attraktion:
         self.utrop2 = utrop2
         self.utrop3 = utrop3
         self.vantetid = vantetid
+        self.haveri = haveri
 
     def __str__(self):
         return self.namn.capitalize() + "! " + self.beskrivning
@@ -33,7 +35,7 @@ class Attraktion:
         print("Äntligen!")
 
     def starta(self):
-        print("Alla " + str(self.kapacitet) + " personen är redo för " + self.namn + ".")
+        print("Alla " + str(self.kapacitet) + " personer är redo för " + self.namn + ".")
         sleep(1)
         print("Här kör vi!")
         for i in range(3):
@@ -47,10 +49,16 @@ class Attraktion:
                 print(self.utrop3)
         print("")
         sleep(1)
+        if random() < 0.1:
+            val.crash()
+        else:
+            print(self.namn.capitalize() + " stannar.")
+            sleep(1)
+            print("Det var kul! Vill du välja en annan attraktion nu?", end="\n\n")
 
-# def crash
+    def crash(self):
+        print("Åh nej! " + self.namn.capitalize() + " havererar!", end="\n\n")
 
-# def exit
 
 def valkommen():
     print("Här är attraktionerna som du kan välja emellan:")
@@ -62,19 +70,26 @@ def valkommen():
     if not val or not val.isdigit() or int(val) < 1 or int(val) > 5:
         return False
     else:
-         return attraktioner[int(val)-1]
+        return attraktioner[int(val)-1]
+
 
 attraktioner = []
-attraktioner.append(Attraktion("pariserhjulet","Det är toppen på toppen!", 50,False,
-                               "Jag kan se mitt hus!","Ooh, så vackert","Vad små alla människor ser ut.",5))
-attraktioner.append(Attraktion("berg-och dalbanan","De högsta bergen och de djupaste dalarna!",40,140,
-                               "Wheeee!!", "Aaaaah!!", "Whoaaaaa!!", 15))
-attraktioner.append(Attraktion("lustiga huset","Världens lustigaste hus!",25,False,
-                               "Hahaha!","Hohoho!","Hihihi!",5))
-attraktioner.append(Attraktion("radiobilarna","Vi har även televisionbilar och blueraybilar!",16,130,
-                               "Bam!", "Whap!", "Pow!",0))
-attraktioner.append(Attraktion("frittfall","Fall fritt som en fågel! Eller en tegel.",30,140,
-                               "Aaaahh!!", "Ihhhh!", "Jag är rädd!", 10))
+pass
+attraktioner.append(Attraktion("pariserhjulet", "Det är toppen på toppen!", 50, False,
+                               "Jag kan se mitt hus!", "Ooh, så vackert", "Vad små alla människor ser ut.", 5,
+                               "Hjulet kan inte stanna längre... du måste vänta på mekanikerna."))
+attraktioner.append(Attraktion("berg-och dalbanan", "De högsta bergen och de djupaste dalarna!", 40, 140,
+                               "Wheeee!!", "Aaaaah!!", "Whoaaaaa!!", 15,
+                               ""))
+attraktioner.append(Attraktion("lustiga huset", "Världens lustigaste hus!", 25, False,
+                               "Hahaha!", "Hohoho!", "Hihihi!", 5,
+                               ""))
+attraktioner.append(Attraktion("radiobilarna", "Vi har även televisionbilar och blueraybilar!", 16, 130,
+                               "Bam!", "Whap!", "Pow!", 0,
+                               ""))
+attraktioner.append(Attraktion("frittfall", "Fall fritt som en fågel! Eller en tegel.", 30, 140,
+                               "Aaaahh!!", "Ihhhh!", "Jag är rädd!", 10,
+                               ""))
 
 print("☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆")
 print("         Välkommen på nöjesfältet!")
@@ -82,10 +97,12 @@ print("☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆", end="\n
 val = valkommen()
 
 while val:
-    if (val.langd().lower()) != "j":
+    if (val.langd()[0].lower()) != "j":
         print("Tyvärr! Du får inte gå på " + val.namn + ". Vill du försöka igen?", end="\n\n")
     else:
         if val.vantetid != 0:
             val.vanta()
         val.starta()
     val = valkommen()
+
+print("Hejdå!")
