@@ -7,13 +7,13 @@ from random import random
 class Attraktion:
     def __init__(self, namn, beskrivning, kapacitet, minlangd, utrop1, utrop2, utrop3, vantetid, haveri):
         self.namn = namn                    # Attraktionens namn
-        self.kapacitet = kapacitet          # Antal personer som är tillåten på attraktionen
+        self.kapacitet = kapacitet          # Antal tillåtna personer på attraktionen
         self.beskrivning = beskrivning      # Reklamprat
-        self.minlangd = minlangd            # Hur långt man måste vara för att åka
+        self.minlangd = minlangd            # Hur lång man måste vara för att åka
         self.utrop1 = utrop1                # "Iiih!" och "Aaah!" osv
         self.utrop2 = utrop2
         self.utrop3 = utrop3
-        self.vantetid = vantetid            # Hur långt man måste köa innan man åker
+        self.vantetid = vantetid            # Hur länge man måste köa innan man får åka
         self.haveri = haveri                # Det som händer när attraktionen havererar
 
     def __str__(self):
@@ -62,10 +62,10 @@ class Attraktion:
         print("Åh nej! " + self.namn.capitalize() + " havererar!", end="\n\n")
         print(self.haveri, end="\n\n")
         sleep(3)
-        print("Det var nära! Hoppas det inte händer igen...", end="\n\n")
+        print("Det var nära ögat! Hoppas det inte händer igen...", end="\n\n")
 
 
-def valkommen():                # Visas varje gång du kan välja.
+def valkommen():                # Visas varje gång du kan välja attraktion.
     print("Här är attraktionerna som du kan välja emellan:")
     for a in range(len(attraktioner)):
         beskrivning = attraktioner[a]
@@ -81,19 +81,19 @@ def valkommen():                # Visas varje gång du kan välja.
 attraktioner = []               # Tanken är att det ska bli lätt att addera/ta bort attraktioner.
 attraktioner.append(Attraktion("pariserhjulet", "Det är toppen på toppen!", 50, False,
                                "Jag kan se mitt hus!", "Ooh, så vackert.", "Vad små alla människor ser ut.", 5,
-                               "Hjulet har tappat allt kontroll! Du måste hoppa ut!"))
+                               "Hjulet spinner snabbare och snabbare utan kontroll! Du måste hoppa ut!"))
 attraktioner.append(Attraktion("berg-och dalbanan", "De högsta bergen och de djupaste dalarna!", 40, 140,
                                "Wheeee!!", "Aaaaah!!", "Whoaaaaa!!", 15,
-                               "Banan stannar mitt i en loop... du måste vänta på mekanikerna."))
+                               "Vagnarna stannar mitt i en loop... du måste vänta på mekanikerna."))
 attraktioner.append(Attraktion("lustiga huset", "Världens lustigaste hus!", 25, False,
                                "Hahaha!", "Hohoho!", "Hihihi!", 5,
                                "Flygande mattan vägrar att flyga. Du måste ta trapporna."))
 attraktioner.append(Attraktion("radiobilarna", "Vi har även televisionbilar och blueraybilar!", 16, 130,
                                "Bam!", "Whap!", "Pow!", 0,
-                               "Du kan bara köra till vänster! Gör några donuts innan du stannar."))
+                               "Du kan bara svänga åt vänster! Gör några donuts innan du stannar."))
 attraktioner.append(Attraktion("frittfall", "Fall fritt som en fågel! Eller en tegelsten.", 30, 140,
                                "Aaaahh!!", "Ihhhh!", "Neeeej!", 10,
-                               "Bromsarna är trasiga! Hopp av med din fallskärm. (Du har väl en fallskärm?)"))
+                               "Bromsarna är trasiga! Hoppa av med din fallskärm. (Du har väl en fallskärm?)"))
 
 
 # Här börjar själva programmet
@@ -104,7 +104,7 @@ val = valkommen()
 
 while val:                                                  # Upprepar till en input annan än 1, 2, 3, 4 eller 5 ges.
     if (val.langd()[0].lower()) != "j":
-        print("Tyvärr! Du får inte gå på " + val.namn + ". Vill du försöka igen?", end="\n\n")
+        print("Tyvärr! Du får inte åka på " + val.namn + ". Vill du försöka igen?", end="\n\n")
     else:
         if val.vantetid != 0:
             val.vanta()
@@ -112,3 +112,5 @@ while val:                                                  # Upprepar till en i
     val = valkommen()
 
 print("\nTack för besöket! Hejdå!")
+
+
