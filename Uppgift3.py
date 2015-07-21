@@ -1,18 +1,20 @@
+# !/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from time import sleep
 from random import random
 
-
 class Attraktion:
     def __init__(self, namn, beskrivning, kapacitet, minlangd, utrop1, utrop2, utrop3, vantetid, haveri):
-        self.namn = namn
-        self.kapacitet = kapacitet
-        self.beskrivning = beskrivning
-        self.minlangd = minlangd
-        self.utrop1 = utrop1
+        self.namn = namn                    # Attraktionens namn
+        self.kapacitet = kapacitet          # Antal personer som är tillåten på attraktionen
+        self.beskrivning = beskrivning      # Reklamprat
+        self.minlangd = minlangd            # Hur långt man måste vara för att åka
+        self.utrop1 = utrop1                # "Iiih!" och "Aaah!" osv
         self.utrop2 = utrop2
         self.utrop3 = utrop3
-        self.vantetid = vantetid
-        self.haveri = haveri
+        self.vantetid = vantetid            # Hur långt man måste köa innan man åker
+        self.haveri = haveri                # Det som händer när attraktionen havererar
 
     def __str__(self):
         return self.namn.capitalize() + "! " + self.beskrivning
@@ -78,7 +80,7 @@ def valkommen():                # Visas varje gång du kan välja.
 
 attraktioner = []               # Tanken är att det ska bli lätt att addera/ta bort attraktioner.
 attraktioner.append(Attraktion("pariserhjulet", "Det är toppen på toppen!", 50, False,
-                               "Jag kan se mitt hus!", "Ooh, så vackert", "Vad små alla människor ser ut.", 5,
+                               "Jag kan se mitt hus!", "Ooh, så vackert.", "Vad små alla människor ser ut.", 5,
                                "Hjulet har tappat allt kontroll! Du måste hoppa ut!"))
 attraktioner.append(Attraktion("berg-och dalbanan", "De högsta bergen och de djupaste dalarna!", 40, 140,
                                "Wheeee!!", "Aaaaah!!", "Whoaaaaa!!", 15,
