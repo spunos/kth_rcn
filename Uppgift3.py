@@ -85,10 +85,10 @@ attraktioner.append(Attraktion("pariserhjulet", "Det är toppen på toppen!", 50
 attraktioner.append(Attraktion("berg-och dalbanan", "De högsta bergen och de djupaste dalarna!", 40, 140,
                                "Wheeee!!", "Aaaaah!!", "Whoaaaaa!!", 15,
                                "Vagnarna stannar mitt i en loop... du måste vänta på mekanikerna."))
-attraktioner.append(Attraktion("lustiga huset", "Världens lustigaste hus!", 25, False,
+attraktioner.append(Attraktion("lustiga huset", "Världens lustigaste hus!", 1, False,
                                "Hahaha!", "Hohoho!", "Hihihi!", 5,
                                "Flygande mattan vägrar att flyga. Du måste ta trapporna."))
-attraktioner.append(Attraktion("radiobilarna", "Vi har även televisionbilar och blueraybilar!", 16, 130,
+attraktioner.append(Attraktion("radiobilarna", "Vi har även televisionsbilar och blueraybilar!", 16, 130,
                                "Bam!", "Whap!", "Pow!", 0,
                                "Du kan bara svänga åt vänster! Gör några donuts innan du stannar."))
 attraktioner.append(Attraktion("frittfall", "Fall fritt som en fågel! Eller en tegelsten.", 30, 140,
@@ -98,7 +98,7 @@ attraktioner.append(Attraktion("frittfall", "Fall fritt som en fågel! Eller en 
 
 # Här börjar själva programmet
 print("☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆")
-print("         Välkommen på nöjesfältet!")
+print("         Välkommen till nöjesfältet!")
 print("☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆", end="\n\n")
 val = valkommen()
 
