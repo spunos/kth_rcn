@@ -31,7 +31,7 @@ class Attraktion:
             else:
                 pluralis = "er"
             print("..." + str(self.vantetid-i) + " minut" + pluralis + "...")
-            sleep(1)
+            sleep(1)                # Kommentera bort om du inte har lust att köa :)
         print("Äntligen!")
 
     def starta(self):
@@ -41,7 +41,7 @@ class Attraktion:
         for i in range(3):
             u = random()
             sleep(1)
-            if u < 0.33:
+            if u < 0.33:            # Väljer slumpmässigt vilka utrop visas
                 print(self.utrop1)
             elif u < 0.66:
                 print(self.utrop2)
@@ -49,7 +49,7 @@ class Attraktion:
                 print(self.utrop3)
         print("")
         sleep(1)
-        if random() < 0.1:
+        if random() < 0.2:          # Chansen att en attraktion havererar.
             val.crash()
         else:
             print(self.namn.capitalize() + " stannar.")
@@ -58,45 +58,49 @@ class Attraktion:
 
     def crash(self):
         print("Åh nej! " + self.namn.capitalize() + " havererar!", end="\n\n")
+        print(self.haveri, end="\n\n")
+        sleep(3)
+        print("Det var nära! Hoppas det inte händer igen...", end="\n\n")
 
 
-def valkommen():
+def valkommen():                # Visas varje gång du kan välja.
     print("Här är attraktionerna som du kan välja emellan:")
     for a in range(len(attraktioner)):
         beskrivning = attraktioner[a]
         print(str(a+1) + ": " + str(beskrivning))
     print("")
     val = input("Ange attraktionen som du vill uppleva: (1/2/3/4/5)")
-    if not val or not val.isdigit() or int(val) < 1 or int(val) > 5:
+    if not val or not val.isdigit() or int(val) < 1 or int(val) > len(attraktioner):
         return False
     else:
         return attraktioner[int(val)-1]
 
 
-attraktioner = []
-pass
+attraktioner = []               # Tanken är att det ska bli lätt att addera/ta bort attraktioner.
 attraktioner.append(Attraktion("pariserhjulet", "Det är toppen på toppen!", 50, False,
                                "Jag kan se mitt hus!", "Ooh, så vackert", "Vad små alla människor ser ut.", 5,
-                               "Hjulet kan inte stanna längre... du måste vänta på mekanikerna."))
+                               "Hjulet har tappat allt kontroll! Du måste hoppa ut!"))
 attraktioner.append(Attraktion("berg-och dalbanan", "De högsta bergen och de djupaste dalarna!", 40, 140,
                                "Wheeee!!", "Aaaaah!!", "Whoaaaaa!!", 15,
-                               ""))
+                               "Banan stannar mitt i en loop... du måste vänta på mekanikerna."))
 attraktioner.append(Attraktion("lustiga huset", "Världens lustigaste hus!", 25, False,
                                "Hahaha!", "Hohoho!", "Hihihi!", 5,
-                               ""))
+                               "Flygande mattan vägrar att flyga. Du måste ta trapporna."))
 attraktioner.append(Attraktion("radiobilarna", "Vi har även televisionbilar och blueraybilar!", 16, 130,
                                "Bam!", "Whap!", "Pow!", 0,
-                               ""))
-attraktioner.append(Attraktion("frittfall", "Fall fritt som en fågel! Eller en tegel.", 30, 140,
-                               "Aaaahh!!", "Ihhhh!", "Jag är rädd!", 10,
-                               ""))
+                               "Du kan bara köra till vänster! Gör några donuts innan du stannar."))
+attraktioner.append(Attraktion("frittfall", "Fall fritt som en fågel! Eller en tegelsten.", 30, 140,
+                               "Aaaahh!!", "Ihhhh!", "Neeeej!", 10,
+                               "Bromsarna är trasiga! Hopp av med din fallskärm. (Du har väl en fallskärm?)"))
 
+
+# Här börjar själva programmet
 print("☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆")
 print("         Välkommen på nöjesfältet!")
 print("☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆", end="\n\n")
 val = valkommen()
 
-while val:
+while val:                                                  # Upprepar till en input annan än 1, 2, 3, 4 eller 5 ges.
     if (val.langd()[0].lower()) != "j":
         print("Tyvärr! Du får inte gå på " + val.namn + ". Vill du försöka igen?", end="\n\n")
     else:
@@ -105,4 +109,4 @@ while val:
         val.starta()
     val = valkommen()
 
-print("Hejdå!")
+print("\nTack för besöket! Hejdå!")
