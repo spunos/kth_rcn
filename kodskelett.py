@@ -25,6 +25,7 @@ class Djur():
 # Klass som beskriver djurparken:
 
 class Djurpark():
+    # Läser in eller skaper listan på alla djur i parken
     def __init__(self, filnamn):
         self.filnamn= filnamn
 
@@ -36,20 +37,8 @@ class Djurpark():
     def salja(self):
         return
 
-    # Sorterar alla djur i parken efter namn (stigande/fallande)
-    def sortera_namn(self, namn):
-        return
-
-    # Sorterar alla djur i parken efter alder (stigande/fallande)
-    def sortera_alder(self, alder):
-        return
-
-    # Sorterar alla djur i parken efter art (stigande/fallande)
-    def sortera_art(self, art):
-        return
-
-    # Sorterar alla djur i parken efter kön (stigande/fallande)
-    def sortera_kon(self, kon):
+    # Sorterar alla djur i parken efter namn, ålder, art eller kön.
+    def sortera_namn(self, namn, alder, art, kon):
         return
 
     # Sparar listan på alla djur i parken
