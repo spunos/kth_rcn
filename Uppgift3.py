@@ -94,7 +94,7 @@ attraktioner.append(Attraktion("berg-och dalbanan", "De högsta bergen och de dj
                                "Vagnarna stannar mitt i en loop... du måste vänta på mekanikerna."))
 attraktioner.append(Attraktion("spöktåget", "Världens spökigaste tåg!", 8, False,
                                "Iih!", "Brrr!", "Aaaah!! Ha ha ha!", 5,
-                               "Du blev biten av en zombie! Du måste omedelbart vaccinera dig!"))
+                               "Du blev biten av en zombie! Du måste vaccinera dig omedelbart!"))
 attraktioner.append(Attraktion("radiobilarna", "Vi har även televisionsbilar och blueraybilar!", 16, 130,
                                "Bam!", "Whap!", "Pow!", 0,
                                "Du kan bara svänga åt vänster! Gör några donuts innan du stannar."))
