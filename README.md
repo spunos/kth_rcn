@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -14,7 +13,7 @@ DD1315/DA3009 våren 2015 (Python)
 teknologen du är erbjuder du dig att skriva ihop ett program som hjälper din släkting att hålla
 koll på de nyinköpta djuren.</p>
 <p>Det första du ska göra är att skapa en fil där alla djur ligger. De parametrar du måste ha
-med är Namn, ålder, Art och Kön. Det ska vara minst 7 djur och det måste finnas minst två
+med är Namn, Ålder, Art och Kön. Det ska vara minst 7 djur och det måste finnas minst två
 som är av samma art. Tänk på att programmet blir mycket roligare desto fler djur du har.</p>
 <p>Man ska kunna göra följande i programmet:</p>
 <ul><li>Söka efter ett djur baserat på parametrar, t.ex. namn, ålder, art, osv.</li>
