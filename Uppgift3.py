@@ -4,6 +4,7 @@
 from time import sleep
 from random import random
 
+# Attrkationklassen beskriver de olika attraktioner som finns i nöjesfältet.
 class Attraktion:
     def __init__(self, namn, beskrivning, kapacitet, minlangd, utrop1, utrop2, utrop3, vantetid, haveri):
         self.namn = namn                    # Attraktionens namn
@@ -16,15 +17,18 @@ class Attraktion:
         self.vantetid = vantetid            # Hur länge man måste köa innan man får åka
         self.haveri = haveri                # Det som händer när attraktionen havererar
 
+    # Returnerar en sträng där attraktionen gör reklam för sig.
     def __str__(self):
         return self.namn.capitalize() + "! " + self.beskrivning
 
+    # Kontrollerar minimumlängd
     def langd(self):
         if self.minlangd:
             return input("Är du minst " + str(self.minlangd) + "cm lång? (j/n)")
         else:
             return "j"
 
+    # Simulerar parkens väntetider. En minut i parken = en sekund i verkligheten.
     def vanta(self):
         print("Väntetiden till " + self.namn + " är " + str(self.vantetid) + " minuter just nu.")
         for i in range(self.vantetid):
@@ -36,6 +40,7 @@ class Attraktion:
             sleep(1)                # Kommentera bort om du inte har lust att köa :)
         print("Äntligen!")
 
+    # Simulerar själva attraktionen. Visar också attraktionens kapacitet.
     def starta(self):
         print("Alla " + str(self.kapacitet) + " personer är redo för " + self.namn + ".")
         sleep(1)
@@ -43,7 +48,7 @@ class Attraktion:
         for i in range(3):
             u = random()
             sleep(1)
-            if u < 0.33:            # Väljer slumpmässigt vilka utrop visas
+            if u < 0.33:            # Väljer slumpmässigt vilka utrop visas.
                 print(self.utrop1)
             elif u < 0.66:
                 print(self.utrop2)
@@ -58,6 +63,7 @@ class Attraktion:
             sleep(1)
             print("Det var kul! Vill du välja en annan attraktion nu?", end="\n\n")
 
+    # Visas när attraktionen havererar.
     def crash(self):
         print("Åh nej! " + self.namn.capitalize() + " havererar!", end="\n\n")
         print(self.haveri, end="\n\n")
@@ -65,7 +71,8 @@ class Attraktion:
         print("Det var nära ögat! Hoppas det inte händer igen...", end="\n\n")
 
 
-def valkommen():                # Visas varje gång du kan välja attraktion.
+# Visas varje gång du kan välja attraktion.
+def valkommen():
     print("Här är attraktionerna som du kan välja emellan:")
     for a in range(len(attraktioner)):
         beskrivning = attraktioner[a]
@@ -77,17 +84,17 @@ def valkommen():                # Visas varje gång du kan välja attraktion.
     else:
         return attraktioner[int(val)-1]
 
-
-attraktioner = []               # Tanken är att det ska bli lätt att addera/ta bort attraktioner.
+# Listan över alla attraktioner. Tanken är att det ska bli lätt att addera/ta bort attraktioner.
+attraktioner = []
 attraktioner.append(Attraktion("pariserhjulet", "Det är toppen på toppen!", 50, False,
                                "Jag kan se mitt hus!", "Ooh, så vackert.", "Vad små alla människor ser ut.", 5,
                                "Hjulet spinner snabbare och snabbare utan kontroll! Du måste hoppa ut!"))
 attraktioner.append(Attraktion("berg-och dalbanan", "De högsta bergen och de djupaste dalarna!", 40, 140,
                                "Wheeee!!", "Aaaaah!!", "Whoaaaaa!!", 15,
                                "Vagnarna stannar mitt i en loop... du måste vänta på mekanikerna."))
-attraktioner.append(Attraktion("lustiga huset", "Världens lustigaste hus!", 1, False,
-                               "Hahaha!", "Hohoho!", "Hihihi!", 5,
-                               "Flygande mattan vägrar att flyga. Du måste ta trapporna."))
+attraktioner.append(Attraktion("spöktåget", "Världens spökigaste tåg!", 8, False,
+                               "Iih!", "Brrr!", "Aaaah!! Ha ha ha!", 5,
+                               "Du blev biten av en zombie! Du måste omedelbart vaccinera dig!"))
 attraktioner.append(Attraktion("radiobilarna", "Vi har även televisionsbilar och blueraybilar!", 16, 130,
                                "Bam!", "Whap!", "Pow!", 0,
                                "Du kan bara svänga åt vänster! Gör några donuts innan du stannar."))
@@ -96,13 +103,13 @@ attraktioner.append(Attraktion("frittfall", "Fall fritt som en fågel! Eller en 
                                "Bromsarna är trasiga! Hoppa av med din fallskärm. (Du har väl en fallskärm?)"))
 
 
-# Här börjar själva programmet
+# Här börjar själva programmet. "Valkommen till nöjesfältet" visas bara en gång.
 print("☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆")
 print("         Välkommen till nöjesfältet!")
 print("☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆", end="\n\n")
 val = valkommen()
 
-while val:                                                  # Upprepar till en input annan än 1, 2, 3, 4 eller 5 ges.
+while val:                                  # Upprepar till en input annan än 1, 2, 3, 4 eller 5 ges.
     if (val.langd()[0].lower()) != "j":
         print("Tyvärr! Du får inte åka på " + val.namn + ". Vill du försöka igen?", end="\n\n")
     else:
@@ -111,6 +118,5 @@ while val:                                                  # Upprepar till en i
         val.starta()
     val = valkommen()
 
+# Visas när vi lämnar while-loopen, och darmed, programmet.
 print("\nTack för besöket! Hejdå!")
-
-
