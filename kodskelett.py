@@ -6,11 +6,10 @@
 # Datum:
 
 # Det här är ett program för att hålla koll på djur i en djurpark.
-# Med programmet kan man söka efter djur, sortera djuren och lägga till och ta bort djur.
+# Med programmet kan man söka efter djur, sortera djuren på olika sätt, och lägga till och ta bort djur.
 # Alla ändringar sparas i en fil med namnet "djurpark.txt".
 
 # Klass som beskriver ett djur:
-
 class Djur():
     def __init__(self, namn, alder, art, kon):
         self.namn = namn        # djurets namn
@@ -23,11 +22,18 @@ class Djur():
         return
 
 # Klass som beskriver djurparken:
-
 class Djurpark():
-    # Läser in eller skaper listan på alla djur i parken
+    # Läser in listan på alla djur i parken. Skapar listan om det inte redan finns.
     def __init__(self, filnamn):
         self.filnamn= filnamn
+
+    # Skriver ut programmets valmenyn.
+    def meny(self):
+        return
+
+    # Läser in och returnerar användarens val.
+    def valja(self):
+        return val
 
     # Lägger till ett djur
     def addera(self):
@@ -52,8 +58,8 @@ djurpark = Djurpark(FILNAMN)
 
 # val = "";
 # while val:
-#   djurpark.menu()
-#   val = djurpark.val()
+#   djurpark.meny()
+#   val = djurpark.valja()
 #   # utför detta val
 
 djurpark.spara(FILNAMN)
