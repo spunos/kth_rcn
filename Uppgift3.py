@@ -78,7 +78,11 @@ def valkommen():
         beskrivning = attraktioner[a]
         print(str(a+1) + ": " + str(beskrivning))
     print("")
-    val = input("Ange attraktionen som du vill uppleva: (1/2/3/4/5)")
+    antal = ""
+    for i in range(len(attraktioner)):
+        antal += str(i+1) + "/"
+    antal = antal[:-1]
+    val = input("Ange attraktionen som du vill uppleva: ("+ antal +")")
     if not val or not val.isdigit() or int(val) < 1 or int(val) > len(attraktioner):
         return False
     else:
@@ -95,12 +99,12 @@ attraktioner.append(Attraktion("berg-och dalbanan", "De högsta bergen och de dj
 attraktioner.append(Attraktion("spöktåget", "Världens spökigaste tåg!", 8, False,
                                "Iih!", "Brrr!", "Aaaah!! Ha ha ha!", 5,
                                "Du blev biten av en zombie! Du måste vaccinera dig omedelbart!"))
-attraktioner.append(Attraktion("radiobilarna", "Vi har även televisionsbilar och blueraybilar!", 16, 130,
-                               "Bam!", "Whap!", "Pow!", 0,
-                               "Du kan bara svänga åt vänster! Gör några donuts innan du stannar."))
-attraktioner.append(Attraktion("frittfall", "Fall fritt som en fågel! Eller en tegelsten.", 30, 140,
-                               "Aaaahh!!", "Ihhhh!", "Neeeej!", 10,
-                               "Bromsarna är trasiga! Hoppa av med din fallskärm. (Du har väl en fallskärm?)"))
+#attraktioner.append(Attraktion("radiobilarna", "Vi har även televisionsbilar och blueraybilar!", 16, 130,
+#                               "Bam!", "Whap!", "Pow!", 0,
+#                               "Du kan bara svänga åt vänster! Gör några donuts innan du stannar."))
+#attraktioner.append(Attraktion("frittfall", "Fall fritt som en fågel! Eller en tegelsten.", 30, 140,
+#                               "Aaaahh!!", "Ihhhh!", "Neeeej!", 10,
+#                               "Bromsarna är trasiga! Hoppa av med din fallskärm. (Du har väl en fallskärm?)"))
 
 
 # Här börjar själva programmet. "Valkommen till nöjesfältet" visas bara en gång.
