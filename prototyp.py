@@ -64,7 +64,7 @@ class Djurpark():
     # Sorterar alla djur i parken efter namn, ålder, art eller kön.
     def sortera_namn(self, attribut, fallande):
         print("Sorterad efter " + attribut)
-        print(sorted(djurlistan, operator.attrgetter(attribute), reverse=desc))
+        print(sorted(djurlistan, operator.attrgetter(attribut), reverse=fallande))
 
     # Sparar listan på alla djur i parken
     def spara(self, filename):
@@ -74,15 +74,21 @@ class Djurpark():
 
 djurlistan = []
 try:
-    with open("djurpark.txt", 'r', encoding="utf-8") as file:
-        for line in FILNAMN:
-            djurlistan.append(line)
+    with open("djurpark.txt", mode='r', encoding="utf-8") as fil:
+        djurlistan = fil.read().split("\n")
+        print(djurlistan)
 except:
-    skapafil = input("Filen \"djurpark.txt\" finns inte än. Vill du skapa den?")
+    djurlistan = ["Katt", "Hund", "Fågel"]
+    skapafil = input("Filen \"djurpark.txt\" finns inte än. Vill du skapa den? (j/n)")
     if skapafil.lower()[0] == "j":
-        with open("djurpark.txt", "w", encoding="utf-8") as file:
-            file.write('Katt\n')
-            file.write('Hund\n')
+        with open("djurpark.txt", mode="w", encoding="utf-8") as fil:
+            fil.write("\n".join(djurlistan))
+        print(djurlistan)
+    else:
+        print("En tillfällig lista på djuren i parket har skapats. Obs: listan kommer inte att sparas.")
+        print(djurlistan)
+
+
 # val = "";
 # while val:
 #   djurpark.meny()
