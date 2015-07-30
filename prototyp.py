@@ -28,6 +28,19 @@ class Djurpark():
     # Läser in listan på alla djur i parken. Skapar listan om det inte redan finns.
     def __init__(self, filnamn):
         self.filnamn= filnamn
+        try:
+            with open(self.filnamn, mode='r', encoding="utf-8") as fil:
+                djurlistan = fil.read().split("\n")
+                print(djurlistan)
+        except:
+            djurlistan = ["Katt", "Hund", "Fågel"]
+            skapafil = input("Filen \"djurpark.txt\" finns inte än. Vill du skapa den? (j/n)")
+            if skapafil.lower()[0] == "j":
+                with open(self.filnamn, mode="w", encoding="utf-8") as fil:
+                    fil.write("\n".join(djurlistan))
+                print(djurlistan)
+            else:
+                print("En tillfällig lista på djuren i parket har skapats. Obs: listan kommer inte att sparas.")
 
     # Skriver ut programmets valmenyn.
     def meny(self):
@@ -72,23 +85,10 @@ class Djurpark():
 
 # Huvudprogram
 
-djurlistan = []
-try:
-    with open("djurpark.txt", mode='r', encoding="utf-8") as fil:
-        djurlistan = fil.read().split("\n")
-        print(djurlistan)
-except:
-    djurlistan = ["Katt", "Hund", "Fågel"]
-    skapafil = input("Filen \"djurpark.txt\" finns inte än. Vill du skapa den? (j/n)")
-    if skapafil.lower()[0] == "j":
-        with open("djurpark.txt", mode="w", encoding="utf-8") as fil:
-            fil.write("\n".join(djurlistan))
-        print(djurlistan)
-    else:
-        print("En tillfällig lista på djuren i parket har skapats. Obs: listan kommer inte att sparas.")
-        print(djurlistan)
+def starta():
+    parken = Djurpark("djurpark.txt")
 
-
+starta()
 # val = "";
 # while val:
 #   djurpark.meny()
