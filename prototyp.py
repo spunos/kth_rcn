@@ -12,7 +12,7 @@
 import operator
 
 # Klass som beskriver ett djur:
-class Djur():
+class Djur(object):
     def __init__(self, namn, alder, art, kon):
         self.namn = namn        # djurets namn
         self.alder = alder      # djurets ålder
@@ -21,7 +21,7 @@ class Djur():
 
     # Returnerar en sträng som beskriver djuret
     def __str__(self):
-        return
+        return "{:<8}{:<4}{:<10}{:<4}".format(self.namn, self.alder, self.art, self.kon)
 
 # Klass som beskriver djurparken:
 class Djurpark():
@@ -31,40 +31,39 @@ class Djurpark():
         try:
             with open(self.filnamn, mode='r', encoding="utf-8") as fil:
                 djurlistan = fil.read().split("\n")
-                print(djurlistan)
         except:
             djurlistan = ["Katt", "Hund", "Fågel"]
             skapafil = input("Filen \"djurpark.txt\" finns inte än. Vill du skapa den? (j/n)")
             if skapafil.lower()[0] == "j":
                 with open(self.filnamn, mode="w", encoding="utf-8") as fil:
                     fil.write("\n".join(djurlistan))
-                print(djurlistan)
-            else:
-                print("En tillfällig lista på djuren i parket har skapats. Obs: listan kommer inte att sparas.")
+        djurobjekter = {}
+        for djur in djurlistan:
+            attributer = djur.split(",")
+            namn = attributer[0]
+            djurobjekter[namn] = Djur(attributer[0], attributer[1], attributer[2], attributer[3])
+        for i in djurobjekter.values():
+            print(i)
 
-    # Skriver ut programmets valmenyn.
+# Skriver ut programmets valmenyn.
     def meny(self):
-        # sortera
-        # addera
-        # ta bort
-        return
-
-    # Läser in och returnerar användarens val.
-    def valja(self):
+        print("Välkommen till djurparken!")
         print('''Vänligen välja om du vill:
               1. Se en lista på alla djur i parken
               2. Lägga till ett djur
               3. Ta bort ett djur''')
-        val = input("")
-        if val.lower() == "s":
+
+    # Läser in och returnerar användarens val.
+    def valja(self):
+       val = input("")
+       if val.lower() == "s":
             sortval = input('''Vill du sortera efter:
             1. Namn
             2. Art
             3. Ålder
             4. Kön''')
             stigande = input("På vilket sätt vill du sortera? (standard: fallande)")
-
-        return val
+       return val
 
     # Lägger till ett djur
     def addera(self):
@@ -80,19 +79,18 @@ class Djurpark():
         print(sorted(djurlistan, operator.attrgetter(attribut), reverse=fallande))
 
     # Sparar listan på alla djur i parken
-    def spara(self, filename):
+    def spara(self):
         return
 
 # Huvudprogram
 
-def starta():
-    parken = Djurpark("djurpark.txt")
+def huvudprogram():
+    djurpark = Djurpark("djurpark.txt")
+#    val = "0"
+#    while val:
+#        djurpark.meny()
+#        val = djurpark.valja()
+#        break
+#    djurpark.spara()
 
-starta()
-# val = "";
-# while val:
-#   djurpark.meny()
-#   val = djurpark.valja()
-#   # utför detta val
-
-# djurpark.spara(FILNAMN)
+huvudprogram()
