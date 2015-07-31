@@ -45,13 +45,10 @@ class Djurpark():
         for djur in djurlistan:
             attributer = djur.split(",")
             namn = attributer[0]
-            self.djurobjekter[namn] = Djur(attributer[0], int(attributer[1]), attributer[2], attributer[3])
-        #self.djurlistan = list(self.djurobjekter.values())
-        #print(self.djurlistan)
+            self.djurobjekter[namn] = Djur(attributer[0], int(attributer[1]), attributer[2][1:], attributer[3][1:])
 
 # Skriver ut programmets valmenyn.
     def meny(self):
-        print("Välkommen till djurparken!")
         print('''Vänligen välja om du vill:
               1. Se en lista på alla djur i parken
               2. Lägga till ett djur
@@ -60,25 +57,52 @@ class Djurpark():
     # Läser in och returnerar användarens val.
     def valja(self):
        val = input("")
-       if val.lower() == "s":
-            sortval = input('''Vill du sortera efter:
+       if val == "1":
+            print('''Vill du sortera efter:
             1. Namn
             2. Art
             3. Ålder
             4. Kön''')
-            stigande = input("På vilket sätt vill du sortera? (standard: fallande)")
+            sortval = input("")
+            if sortval == "1":
+                sortval = "namn"
+            elif sortval == "2":
+                sortval = "art"
+            elif sortval == "3":
+                sortval = "alder"
+            elif sortval == "4":
+                sortval = "kon"
+            print("Vill du sortera stigande eller fallande? (standard: fallande)")
+            sortsatt = input("")
+            if not sortsatt or sortsatt.lower()[0] == "f":
+                sortsatt = False
+            else:
+                sortsatt = True
+            self.sortera(sortval,sortsatt)
+       elif val == "2":
+           self.addera()
+       elif val == "3":
+           self.salja()
        return val
 
     # Lägger till ett djur
     def addera(self):
-        return
+        nyttnamn = input("Djurets namn?")
+        nyalder = int(input("Djurets ålder?"))
+        nyart = input("Djurets art?")
+        nyttkon = input("Djurets kön?")
+        self.djurobjekter[nyttnamn] = Djur(nyttnamn, int(nyalder), nyart, nyttkon)
+        print("Följande djuret har tilläggats:")
+        print(self.djurobjekter[nyttnamn])
 
     # Tar bort ett djur
     def salja(self):
-        return
+        print("Vilket djur vill du ta bort?")
+        rensa = input("")
+        print("Följande djuret har sålts:\n" + str(self.djurobjekter.pop(rensa)))
 
     # Sorterar alla djur i parken efter namn, ålder, art eller kön.
-    def sortera_namn(self, attribut, fallande):
+    def sortera(self, attribut, fallande=False):
         print("Sorterad efter " + attribut)
         sorterad = sorted(list(self.djurobjekter.values()), key=operator.attrgetter(attribut), reverse=fallande)
         for i in sorterad:
@@ -92,12 +116,12 @@ class Djurpark():
 
 def huvudprogram():
     djurpark = Djurpark("djurpark.txt")
-    djurpark.sortera_namn("alder", True)
-#    val = "0"
-#    while val:
-#        djurpark.meny()
-#        val = djurpark.valja()
-#        break
-#    djurpark.spara()
+#    djurpark.sortera("namn")
+    print("Välkommen till djurparken!")
+    val = "0"
+    while val:
+        djurpark.meny()
+        val = djurpark.valja()
+    djurpark.spara()
 
 huvudprogram()
