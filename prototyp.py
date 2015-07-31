@@ -23,6 +23,9 @@ class Djur(object):
     def __str__(self):
         return "{:<8}{:<4}{:<10}{:<4}".format(self.namn, self.alder, self.art, self.kon)
 
+    def __repr__(self):
+        return str(self)
+
 # Klass som beskriver djurparken:
 class Djurpark():
     # Läser in listan på alla djur i parken. Skapar listan om det inte redan finns.
@@ -32,18 +35,19 @@ class Djurpark():
             with open(self.filnamn, mode='r', encoding="utf-8") as fil:
                 djurlistan = fil.read().split("\n")
         except:
-            djurlistan = ["Katt", "Hund", "Fågel"]
+            djurlistan = ["Anna, 25, papegoja, f", "Bosse, 4, katt, m", "Cesar, 7, hund, m", "Dora, 11, får, f",
+                          "Emma, 9, katt, f", "Fido, 2, hund, m"]
             skapafil = input("Filen \"djurpark.txt\" finns inte än. Vill du skapa den? (j/n)")
             if skapafil.lower()[0] == "j":
                 with open(self.filnamn, mode="w", encoding="utf-8") as fil:
                     fil.write("\n".join(djurlistan))
-        djurobjekter = {}
+        self.djurobjekter = {}       # dictionary
         for djur in djurlistan:
             attributer = djur.split(",")
             namn = attributer[0]
-            djurobjekter[namn] = Djur(attributer[0], attributer[1], attributer[2], attributer[3])
-        for i in djurobjekter.values():
-            print(i)
+            self.djurobjekter[namn] = Djur(attributer[0], int(attributer[1]), attributer[2], attributer[3])
+        #self.djurlistan = list(self.djurobjekter.values())
+        #print(self.djurlistan)
 
 # Skriver ut programmets valmenyn.
     def meny(self):
@@ -76,7 +80,9 @@ class Djurpark():
     # Sorterar alla djur i parken efter namn, ålder, art eller kön.
     def sortera_namn(self, attribut, fallande):
         print("Sorterad efter " + attribut)
-        print(sorted(djurlistan, operator.attrgetter(attribut), reverse=fallande))
+        sorterad = sorted(list(self.djurobjekter.values()), key=operator.attrgetter(attribut), reverse=fallande)
+        for i in sorterad:
+            print(i)
 
     # Sparar listan på alla djur i parken
     def spara(self):
@@ -86,6 +92,7 @@ class Djurpark():
 
 def huvudprogram():
     djurpark = Djurpark("djurpark.txt")
+    djurpark.sortera_namn("alder", True)
 #    val = "0"
 #    while val:
 #        djurpark.meny()
