@@ -21,7 +21,7 @@ class Djur(object):
 
     # Returnerar en sträng som beskriver djuret
     def __str__(self):
-        return "{:<8}{:<4}{:<10}{:<4}".format(self.namn, self.alder, self.art, self.kon)
+        return "{:<8}{:<4}{:<10}{:<1}".format(self.namn, self.alder, self.art, self.kon)
 
     def __repr__(self):
         return str(self)
@@ -110,13 +110,19 @@ class Djurpark():
 
     # Sparar listan på alla djur i parken
     def spara(self):
-        return
+        print("Vill du spara filen?")
+        spara = input("")
+        if spara.lower()[0] == "j":
+            djurlistan = list(self.djurobjekter.values())
+            print(djurlistan)
+            #with open(self.filnamn, mode="w", encoding="utf-8") as fil:
+            #    fil.write("\n".join(listlist))
 
 # Huvudprogram
 
 def huvudprogram():
     djurpark = Djurpark("djurpark.txt")
-#    djurpark.sortera("namn")
+    djurpark.sortera("namn")
     print("Välkommen till djurparken!")
     val = "0"
     while val:
