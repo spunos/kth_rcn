@@ -51,8 +51,9 @@ class Djurpark():
     def meny(self):
         print('''Vänligen välja om du vill:
               1. Se en lista på alla djur i parken
-              2. Lägga till ett djur
-              3. Ta bort ett djur''')
+              2. Söka ett djur i parken
+              3. Lägga till ett djur
+              4. Ta bort ett djur''')
 
     # Läser in och returnerar användarens val.
     def valja(self):
@@ -64,14 +65,8 @@ class Djurpark():
             3. Ålder
             4. Kön''')
             sortval = input("")
-            if sortval == "1":
-                sortval = "namn"
-            elif sortval == "2":
-                sortval = "art"
-            elif sortval == "3":
-                sortval = "alder"
-            elif sortval == "4":
-                sortval = "kon"
+            sortvallista = ["namn", "art", "alder", "kon"]
+            sortval = sortvallista[int(sortval)-1]
             print("Vill du sortera stigande eller fallande? (standard: fallande)")
             sortsatt = input("")
             if not sortsatt or sortsatt.lower()[0] == "f":
@@ -80,8 +75,10 @@ class Djurpark():
                 sortsatt = True
             self.sortera(sortval,sortsatt)
        elif val == "2":
-           self.addera()
+           self.soka()
        elif val == "3":
+           self.addera()
+       elif val == "4":
            self.salja()
        return val
 
@@ -101,10 +98,15 @@ class Djurpark():
         rensa = input("")
         print("Följande djuret har sålts:\n" + str(self.djurobjekter.pop(rensa)))
 
+    # Söka efter ett djur
+    def soka(self):
+        return
+
     # Sorterar alla djur i parken efter namn, ålder, art eller kön.
     def sortera(self, attribut, fallande=False):
         print("Sorterad efter " + attribut)
         sorterad = sorted(list(self.djurobjekter.values()), key=operator.attrgetter(attribut), reverse=fallande)
+        print("{:<13}{:<6}{:<15}{:<1}".format("Namn","Ålder","Art","Kön"))
         for i in sorterad:
             print(i)
 
